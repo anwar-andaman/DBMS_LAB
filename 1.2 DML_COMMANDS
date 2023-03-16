@@ -1,0 +1,220 @@
+1.2 DML COMMANDS 
+    a) DML COMMANDS-INSERT
+       1.      Insert values in EMPLOYEE table.
+    
+mysql> INSERT INTO EMPLOYEE VALUES(1,10,'ASHWIN','KOZHIKODE','1999-03-24',132445646547);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(2,11,'GOPAL','KANNUR','1992-04-02',876429473859);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(3,12,'NILEENA','KANNUR','1998-05-14',987636471897);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(4,13,'ASHWIN','KOZHIKODE','1999-03-24',342576549865);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(5,14,'VISHNU','MALAPPURAM','2000-02-28',456314327451);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(6,15,'MAANAS','THAMARASSERI','1999-01-25',174328764536);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(7,16,'AKSHAY','KOKKODI','2000-07-24',152436542765);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM EMPLOYEE;
++--------+------+---------+--------------+------------+--------------+
+| EMP_ID | SSN  | NAME    | CITY         | DOB        | AADHAAR_NO   |
++--------+------+---------+--------------+------------+--------------+
+|      1 |   10 | ASHWIN  | KOZHIKODE    | 1999-03-24 | 132445646547 |
+|      2 |   11 | GOPAL   | KANNUR       | 1992-04-02 | 876429473859 |
+|      3 |   12 | NILEENA | KANNUR       | 1998-05-14 | 987636471897 |
+|      4 |   13 | ASHWIN  | KOZHIKODE    | 1999-03-24 | 342576549865 |
+|      5 |   14 | VISHNU  | MALAPPURAM   | 2000-02-28 | 456314327451 |
+|      6 |   15 | MAANAS  | THAMARASSERI | 1999-01-25 | 174328764536 |
+|      7 |   16 | AKSHAY  | KOKKODI      | 2000-07-24 | 152436542765 |
++--------+------+---------+--------------+------------+--------------+
+7 rows in set (0.00 sec)
+
+      2.      Insert values in STUDENT table.
+ mysql> INSERT INTO STUDENT VALUES(1,'GOPAL',30,'M');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO STUDENT VALUES(2,'RAM KUJUR',18,'M');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO STUDENT VALUES(3,'SHAKEELA',20,'F');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO STUDENT VALUES(4,'JAMEELA',19,'F');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO STUDENT VALUES(5,'NILEENA',24,'F');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO STUDENT VALUES(6,'KARTHIK',22,'M');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO STUDENT VALUES(7,'MISHAB',22,'M');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM STUDENT;
++---------+-----------+------+--------+
+| ROLL_NO | NAME      | AGE  | GENDER |
++---------+-----------+------+--------+
+|       1 | GOPAL     |   30 | M      |
+|       2 | RAM KUJUR |   18 | M      |
+|       3 | SHAKEELA  |   20 | F      |
+|       4 | JAMEELA   |   19 | F      |
+|       5 | NILEENA   |   24 | F      |
+|       6 | KARTHIK   |   22 | M      |
+|       7 | MISHAB    |   22 | M      |
++---------+-----------+------+--------+
+7 rows in set (0.00 sec)
+
+
+  3.      Insert values in INVOICE database. 
+  
+mysql> INSERT INTO CUSTOMER VALUES(1,'MISHAB','KALANTHODE, KOZHIKODE, KERALA','KOZHIKODE',8767543421);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(2,'RAM','VALANCHERI, MALAPPURAM, KERALA','MALAPPURAM',8767988654);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(3,'ABHISHEK','MINNIE BAY, PORT BLAIR, ANDAMAN','PORT BLAIR',9878654532);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(4,'SUNIL KUMAR','GARACHARMA, PORT BLAIR, ANDAMAN','PORT BLAIR',9933257865);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(5,'BABITA','ASHOK NAGAR, NEW DELHI, NCT OF DELHI','NEW DELHI',8767565432);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(6,'ASAD AKBAR','ELECTRONIC CITY, BANGLURU, KARNATAKA','BANGLURU',9878653421);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(7,'SAVITA','NEAR DARGAH, AJMER, RAJASTHAN','AJMER',7890564532);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM CUSTOMER
+    -> ;
++----+-------------+--------------------------------------+------------+------------+
+| ID | NAME        | ADDRESS                              | CITY       | PH_NO      |
++----+-------------+--------------------------------------+------------+------------+
+|  1 | MISHAB      | KALANTHODE, KOZHIKODE, KERALA        | KOZHIKODE  | 8767543421 |
+|  2 | RAM         | VALANCHERI, MALAPPURAM, KERALA       | MALAPPURAM | 8767988654 |
+|  3 | ABHISHEK    | MINNIE BAY, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9878654532 |
+|  4 | SUNIL KUMAR | GARACHARMA, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9933257865 |
+|  5 | BABITA      | ASHOK NAGAR, NEW DELHI, NCT OF DELHI | NEW DELHI  | 8767565432 |
+|  6 | ASAD AKBAR  | ELECTRONIC CITY, BANGLURU, KARNATAKA | BANGLURU   | 9878653421 |
+|  7 | SAVITA      | NEAR DARGAH, AJMER, RAJASTHAN        | AJMER      | 7890564532 |
++----+-------------+--------------------------------------+------------+------------+
+7 rows in set (0.00 sec)
+
+
+mysql> INSERT INTO PRODUCT VALUES(1,'REXONA SOAP',45.00);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(2,'HORLICKS',345.00);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(3,'RED LABEL TEA',75.00);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(4,'SUNSILK SHAMPOO',80.00);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(5,'PONDS CREAM',150.00);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(6,'VASELINE MOISTURISER',145.00);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(7,'GOOD DAY BISCUIT',55.00);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SELECT *FROM PRODUCT;
++-----+----------------------+--------+
+| PID | PNAME                | PRICE  |
++-----+----------------------+--------+
+|   1 | REXONA SOAP          |  45.00 |
+|   2 | HORLICKS             | 345.00 |
+|   3 | RED LABEL TEA        |  75.00 |
+|   4 | SUNSILK SHAMPOO      |  80.00 |
+|   5 | PONDS CREAM          | 150.00 |
+|   6 | VASELINE MOISTURISER | 145.00 |
+|   7 | GOOD DAY BISCUIT     |  55.00 |
++-----+----------------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(1,2,'2023-01-15');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(2,1,'2023-01-17');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(3,2,'2023-01-19');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(4,7,'2023-01-11');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(5,7,'2023-03-15');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(6,4,'2023-02-15');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(7,2,'2023-03-11');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |       2 | 2023-01-15 |
+|      2 |       1 | 2023-01-17 |
+|      3 |       2 | 2023-01-19 |
+|      4 |       7 | 2023-01-11 |
+|      5 |       7 | 2023-03-15 |
+|      6 |       4 | 2023-02-15 |
+|      7 |       2 | 2023-03-11 |
++--------+---------+------------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(1,1,5);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(1,2,1);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(3,2,2);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(3,3,1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(3,7,3);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(1,7,4);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(4,5,1);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      1 |    1 |        5 |
+|      1 |    2 |        1 |
+|      3 |    2 |        2 |
+|      3 |    3 |        1 |
+|      3 |    7 |        3 |
+|      1 |    7 |        4 |
+|      4 |    5 |        1 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
