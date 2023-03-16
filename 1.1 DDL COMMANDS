@@ -1,0 +1,118 @@
+mysql> create database INVOICE;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> CREATE TABLE EMPLOYEE(
+    -> EMP_ID INT PRIMARY KEY,
+    -> NAME VARCHAR(50) NOT NULL,
+    -> CITY VARCHAR(25),
+    -> DOB DATE,
+    -> AADHAAR_NO BIGINT(12));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> DESC EMPLOYEE;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| EMP_ID     | int(11)     | NO   | PRI | NULL    |       |
+| NAME       | varchar(50) | NO   |     | NULL    |       |
+| CITY       | varchar(25) | YES  |     | NULL    |       |
+| DOB        | date        | YES  |     | NULL    |       |
+| AADHAAR_NO | bigint(12)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE STUDENT(
+    -> ROLL_NO INT PRIMARY KEY,
+    -> NAME VARCHAR(50)NOT NULL,
+    -> AGE SMALLINT(2) NOT NULL,
+    -> GENDER CHAR(1) DEFAULT 'M',
+    -> CONSTRAINT AGE_CHK CHECK (AGE BETWEEN 0 AND 99));
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> DESC STUDENT;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| ROLL_NO | int(11)     | NO   | PRI | NULL    |       |
+| NAME    | varchar(50) | NO   |     | NULL    |       |
+| AGE     | smallint(2) | NO   |     | NULL    |       |
+| GENDER  | char(1)     | YES  |     | M       |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TEMPORARY TABLE STUDENT1 SELECT *FROM STUDENT;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENT1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| ROLL_NO | int(11)     | NO   |     | NULL    |       |
+| NAME    | varchar(50) | NO   |     | NULL    |       |
+| AGE     | smallint(2) | NO   |     | NULL    |       |
+| GENDER  | char(1)     | YES  |     | M       |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+mysql> CREATE TABLE EMP_DUP SELECT *FROM EMPLOYEE;
+Query OK, 0 rows affected (0.25 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMP_DUP;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| EMP_ID     | int(11)     | NO   |     | NULL    |       |
+| NAME       | varchar(50) | NO   |     | NULL    |       |
+| CITY       | varchar(25) | YES  |     | NULL    |       |
+| DOB        | date        | YES  |     | NULL    |       |
+| AADHAAR_NO | bigint(12)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> CREATE TABLE CUSTOMER(
+    -> ID INT(4) PRIMARY KEY,
+    -> NAME VARCHAR(50) NOT NULL,
+    -> ADDRESS VARCHAR(150),
+    -> CITY VARCHAR(25),
+    -> PH_NO BIGINT);
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> DESC CUSTOMER;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| ID      | int(4)       | NO   | PRI | NULL    |       |
+| NAME    | varchar(50)  | NO   |     | NULL    |       |
+| ADDRESS | varchar(150) | YES  |     | NULL    |       |
+| CITY    | varchar(25)  | YES  |     | NULL    |       |
+| PH_NO   | bigint(20)   | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> CREATE TABLE PRODUCT(
+    -> PID SMALLINT(4) PRIMARY KEY,
+    -> PNAME VARCHAR(25) NOT NULL,
+    -> PRICE DECIMAL(8,2) DEFAULT 0);
+Query OK, 0 rows affected (0.30 sec)
+
+mysql> DESC PRODUCT;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| PID   | smallint(4)  | NO   | PRI | NULL    |       |
+| PNAME | varchar(25)  | NO   |     | NULL    |       |
+| PRICE | decimal(8,2) | YES  |     | 0.00    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
