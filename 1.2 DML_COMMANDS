@@ -97,8 +97,7 @@ Query OK, 1 row affected (0.04 sec)
 mysql> INSERT INTO CUSTOMER VALUES(7,'SAVITA','NEAR DARGAH, AJMER, RAJASTHAN','AJMER',7890564532);
 Query OK, 1 row affected (0.04 sec)
 
-mysql> SELECT *FROM CUSTOMER
-    -> ;
+mysql> SELECT *FROM CUSTOMER;
 +----+-------------+--------------------------------------+------------+------------+
 | ID | NAME        | ADDRESS                              | CITY       | PH_NO      |
 +----+-------------+--------------------------------------+------------+------------+
@@ -204,6 +203,30 @@ Query OK, 1 row affected (0.04 sec)
 mysql> INSERT INTO INVOICE_ITEM VALUES(4,5,1);
 Query OK, 1 row affected (0.04 sec)
 
+mysql> INSERT INTO INVOICE_ITEM VALUES(2,7,3);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(2,6,2);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(5,2,1);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(5,3,1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(6,3,2);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(6,4,2);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(7,5,2);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(7,7,2);
+Query OK, 1 row affected (0.04 sec)
+
 mysql> SELECT *FROM INVOICE_ITEM;
 +--------+------+----------+
 | INV_ID | PID  | QUANTITY |
@@ -215,9 +238,212 @@ mysql> SELECT *FROM INVOICE_ITEM;
 |      3 |    7 |        3 |
 |      1 |    7 |        4 |
 |      4 |    5 |        1 |
+|      2 |    7 |        3 |
+|      2 |    6 |        2 |
+|      5 |    2 |        1 |
+|      5 |    3 |        1 |
+|      6 |    3 |        2 |
+|      6 |    4 |        2 |
+|      7 |    5 |        2 |
+|      7 |    7 |        2 |
 +--------+------+----------+
+15 rows in set (0.00 sec)
+
+ b)DML COMMANDS- UPDATE
+          1. Update the price of a particular product. 
+
+mysql> UPDATE PRODUCT SET PRICE=100.00 WHERE PID=5;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+  2. Change the name of city ‘kozhikode’ to ‘calicut’ in the customer table. 
+mysql> UPDATE CUSTOMER SET CITY='CALICUT' WHERE CITY='KOZHIKODE';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT *FROM CUSTOMER;
++----+-------------+--------------------------------------+------------+------------+
+| ID | NAME        | ADDRESS                              | CITY       | PH_NO      |
++----+-------------+--------------------------------------+------------+------------+
+|  1 | MISHAB      | KALANTHODE, KOZHIKODE, KERALA        | CALICUT    | 8767543421 |
+|  2 | RAM         | VALANCHERI, MALAPPURAM, KERALA       | MALAPPURAM | 8767988654 |
+|  3 | ABHISHEK    | MINNIE BAY, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9878654532 |
+|  4 | SUNIL KUMAR | GARACHARMA, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9933257865 |
+|  5 | BABITA      | ASHOK NAGAR, NEW DELHI, NCT OF DELHI | NEW DELHI  | 8767565432 |
+|  6 | ASAD AKBAR  | ELECTRONIC CITY, BANGLURU, KARNATAKA | BANGLURU   | 9878653421 |
+|  7 | SAVITA      | NEAR DARGAH, AJMER, RAJASTHAN        | AJMER      | 7890564532 |
++----+-------------+--------------------------------------+------------+------------+
 7 rows in set (0.00 sec)
 
-//COMPLETE INVOICE ITEM TABLE (SHOULD INCLUDE ALL INVOICE IDS)
-//VERIFIED
-//COMPLETE ALL QUERIES
+  3. Update all prices with 2% of its original price. 
+mysql> UPDATE PRODUCT SET PRICE=PRICE*.02;
+Query OK, 7 rows affected (0.04 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> SELECT *FROM PRODUCT;
++-----+----------------------+-------+
+| PID | PNAME                | PRICE |
++-----+----------------------+-------+
+|   1 | REXONA SOAP          |  0.90 |
+|   2 | HORLICKS             |  6.90 |
+|   3 | RED LABEL TEA        |  1.50 |
+|   4 | SUNSILK SHAMPOO      |  1.60 |
+|   5 | PONDS CREAM          |  2.00 |
+|   6 | VASELINE MOISTURISER |  2.90 |
+|   7 | GOOD DAY BISCUIT     |  1.10 |
++-----+----------------------+-------+
+7 rows in set (0.00 sec)
+
+
+ 4. Change the address, city, phone number of a particular customer. 
+mysql> UPDATE CUSTOMER SET ADDRESS='JUHU, MUMBAI, MAHARASHTRA',CITY='MUMBAI',PH_NO=9878654532 WHERE ID=5;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT *FROM CUSTOMER;
++----+-------------+--------------------------------------+------------+------------+
+| ID | NAME        | ADDRESS                              | CITY       | PH_NO      |
++----+-------------+--------------------------------------+------------+------------+
+|  1 | MISHAB      | KALANTHODE, KOZHIKODE, KERALA        | CALICUT    | 8767543421 |
+|  2 | RAM         | VALANCHERI, MALAPPURAM, KERALA       | MALAPPURAM | 8767988654 |
+|  3 | ABHISHEK    | MINNIE BAY, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9878654532 |
+|  4 | SUNIL KUMAR | GARACHARMA, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9933257865 |
+|  5 | BABITA      | JUHU, MUMBAI, MAHARASHTRA            | MUMBAI     | 9878654532 |
+|  6 | ASAD AKBAR  | ELECTRONIC CITY, BANGLURU, KARNATAKA | BANGLURU   | 9878653421 |
+|  7 | SAVITA      | NEAR DARGAH, AJMER, RAJASTHAN        | AJMER      | 7890564532 |
++----+-------------+--------------------------------------+------------+------------+
+7 rows in set (0.00 sec)
+
+
+ 5. Change the quantity of a purchased product of inv_id ‘101’
+mysql> UPDATE INVOICE_ITEM SET QUANTITY=7 WHERE INV_ID=1 AND PID=1;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      1 |    1 |        7 |
+|      1 |    2 |        1 |
+|      3 |    2 |        2 |
+|      3 |    3 |        1 |
+|      3 |    7 |        3 |
+|      1 |    7 |        4 |
+|      4 |    5 |        1 |
+|      2 |    7 |        3 |
+|      2 |    6 |        2 |
+|      5 |    2 |        1 |
+|      5 |    3 |        1 |
+|      6 |    3 |        2 |
+|      6 |    4 |        2 |
+|      7 |    5 |        2 |
+|      7 |    7 |        2 |
++--------+------+----------+
+15 rows in set (0.00 sec)
+
+
+ c) DML COMMAND- DELETE
+         1. Delete the record of customer id ‘10001’. 
+
+mysql> DELETE FROM INVOICE_ITEM WHERE INV_ID IN (SELECT INV_ID FROM INVOICE_MASTER WHERE CUST_ID=1);
+Query OK, 2 rows affected (0.00 sec)
+
+mysql> DELETE FROM INVOICE_MASTER WHERE CUST_ID=1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> DELETE FROM CUSTOMER WHERE ID=1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT *FROM CUSTOMER;
++----+-------------+--------------------------------------+------------+------------+
+| ID | NAME        | ADDRESS                              | CITY       | PH_NO      |
++----+-------------+--------------------------------------+------------+------------+
+|  2 | RAM         | VALANCHERI, MALAPPURAM, KERALA       | MALAPPURAM | 8767988654 |
+|  3 | ABHISHEK    | MINNIE BAY, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9878654532 |
+|  4 | SUNIL KUMAR | GARACHARMA, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9933257865 |
+|  5 | BABITA      | JUHU, MUMBAI, MAHARASHTRA            | MUMBAI     | 9878654532 |
+|  6 | ASAD AKBAR  | ELECTRONIC CITY, BANGLURU, KARNATAKA | BANGLURU   | 9878653421 |
+|  7 | SAVITA      | NEAR DARGAH, AJMER, RAJASTHAN        | AJMER      | 7890564532 |
++----+-------------+--------------------------------------+------------+------------+
+6 rows in set (0.00 sec)
+
+
+        2. Delete all purchase details of items its quantity less than 2. 
+		mysql> DELETE FROM INVOICE_ITEM WHERE QUANTITY<2;
+Query OK, 5 rows affected (0.00 sec)
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      1 |    1 |        5 |
+|      3 |    2 |        2 |
+|      3 |    7 |        3 |
+|      1 |    7 |        4 |
+|      6 |    3 |        2 |
+|      6 |    4 |        2 |
+|      7 |    5 |        2 |
+|      7 |    7 |        2 |
++--------+------+----------+
+8 rows in set (0.00 sec)
+
+         3. Delete the purchase details of product ‘REXONA SOAP’ in the in_id ‘1’. 
+		mysql> DELETE FROM INVOICE_ITEM WHERE PID=(SELECT PID FROM PRODUCT WHERE PNAME='REXONA SOAP') AND INV_ID=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      1 |    2 |        1 |
+|      3 |    2 |        2 |
+|      3 |    3 |        1 |
+|      3 |    7 |        3 |
+|      1 |    7 |        4 |
+|      4 |    5 |        1 |
+|      2 |    7 |        3 |
+|      2 |    6 |        2 |
+|      5 |    2 |        1 |
+|      5 |    3 |        1 |
+|      6 |    3 |        2 |
+|      6 |    4 |        2 |
+|      7 |    5 |        2 |
+|      7 |    7 |        2 |
++--------+------+----------+
+14 rows in set (0.00 sec)
+
+
+
+        4. Delete details of customers who does not have phone number. 
+		DELETE FROM INVOICE_ITEM WHERE INV_ID IN (SELECT INV_ID FROM INVOICE_MASTER WHERE CUST_ID=(SELECT ID FROM CUSTOMER WHERE PH_NO IS NULL));
+Query OK, 2 rows affected (0.00 sec)
+
+DELETE FROM INVOICE_MASTER WHERE CUST_ID=(SELECT ID FROM CUSTOMER WHERE PH_NO IS NULL);
+Query OK, 1 row affected (0.00 sec)
+
+DELETE FROM CUSTOMER WHERE PH_NO IS NULL;
+
+        5. Delete all records from STUDENT table. 
+mysql> DELETE FROM STUDENT;
+Query OK, 7 rows affected (0.00 sec)
+
+mysql> SELECT *FROM STUDENT;
+Empty set (0.00 sec)
+
+        6. Delete Invoice details of a particular customer.
+
+			DELETE FROM CUSTOMER WHERE ID=1;
+			Query OK, 1 row affected (0.00 sec)
+mysql> SELECT *FROM CUSTOMER;
++----+-------------+--------------------------------------+------------+------------+
+| ID | NAME        | ADDRESS                              | CITY       | PH_NO      |
++----+-------------+--------------------------------------+------------+------------+
+|  2 | RAM         | VALANCHERI, MALAPPURAM, KERALA       | MALAPPURAM | 8767988654 |
+|  3 | ABHISHEK    | MINNIE BAY, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9878654532 |
+|  4 | SUNIL KUMAR | GARACHARMA, PORT BLAIR, ANDAMAN      | PORT BLAIR | 9933257865 |
+|  5 | BABITA      | JUHU, MUMBAI, MAHARASHTRA            | MUMBAI     | 9878654532 |
+|  6 | ASAD AKBAR  | ELECTRONIC CITY, BANGLURU, KARNATAKA | BANGLURU   | 9878653421 |
+|  7 | SAVITA      | NEAR DARGAH, AJMER, RAJASTHAN        | AJMER      | 7890564532 |
++----+-------------+--------------------------------------+------------+------------+
+
