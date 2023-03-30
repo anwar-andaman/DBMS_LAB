@@ -1,0 +1,193 @@
+a) TCL COMMANDS
+           1.    Commit
+
+mysql> SET AUTOCOMMIT=OFF;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |       2 | 2023-01-15 |
+|      2 |       1 | 2023-01-17 |
+|      3 |       2 | 2023-01-19 |
+|      4 |       7 | 2023-01-11 |
+|      5 |       7 | 2023-03-15 |
+|      6 |       4 | 2023-02-15 |
+|      7 |       2 | 2023-03-11 |
++--------+---------+------------+
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(8,3,'2023-02-23');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |       2 | 2023-01-15 |
+|      2 |       1 | 2023-01-17 |
+|      3 |       2 | 2023-01-19 |
+|      4 |       7 | 2023-01-11 |
+|      5 |       7 | 2023-03-15 |
+|      6 |       4 | 2023-02-15 |
+|      7 |       2 | 2023-03-11 |
+|      8 |       3 | 2023-02-23 |
++--------+---------+------------+
+8 rows in set (0.00 sec)
+
+           2.    Rollback
+mysql> INSERT INTO INVOICE_MASTER VALUES(9,2,'2023-02-24');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |       2 | 2023-01-15 |
+|      2 |       1 | 2023-01-17 |
+|      3 |       2 | 2023-01-19 |
+|      4 |       7 | 2023-01-11 |
+|      5 |       7 | 2023-03-15 |
+|      6 |       4 | 2023-02-15 |
+|      7 |       2 | 2023-03-11 |
+|      8 |       3 | 2023-02-23 |
+|      9 |       2 | 2023-02-24 |
++--------+---------+------------+
+9 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |       2 | 2023-01-15 |
+|      2 |       1 | 2023-01-17 |
+|      3 |       2 | 2023-01-19 |
+|      4 |       7 | 2023-01-11 |
+|      5 |       7 | 2023-03-15 |
+|      6 |       4 | 2023-02-15 |
+|      7 |       2 | 2023-03-11 |
+|      8 |       3 | 2023-02-23 |
++--------+---------+------------+
+8 rows in set (0.00 sec)
+
+           3.    Savepoint
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(8,3,'2023-02-23');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(9,2,'2023-02-24');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SAVEPOINT S1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(10,2,'2023-02-25');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |       2 | 2023-01-15 |
+|      2 |       1 | 2023-01-17 |
+|      3 |       2 | 2023-01-19 |
+|      4 |       7 | 2023-01-11 |
+|      5 |       7 | 2023-03-15 |
+|      6 |       4 | 2023-02-15 |
+|      7 |       2 | 2023-03-11 |
+|      8 |       3 | 2023-02-23 |
+|      9 |       2 | 2023-02-24 |
+|     10 |       2 | 2023-02-25 |
++--------+---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO S1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT *FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |       2 | 2023-01-15 |
+|      2 |       1 | 2023-01-17 |
+|      3 |       2 | 2023-01-19 |
+|      4 |       7 | 2023-01-11 |
+|      5 |       7 | 2023-03-15 |
+|      6 |       4 | 2023-02-15 |
+|      7 |       2 | 2023-03-11 |
+|      8 |       3 | 2023-02-23 |
+|      9 |       2 | 2023-02-24 |
++--------+---------+------------+
+9 rows in set (0.00 sec)
+
+
+b) DCL COMMAND
+          Create two users user1, user2
+
+mysql> create user user1@localhost identified by 'pass@123';
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create user user2@localhost identified by 'passw@123';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT USER FROM mysql.user;
++------------------+
+| USER             |
++------------------+
+| ANWAR            |
+| AR               |
+| debian-sys-maint |
+| mysql.session    |
+| mysql.sys        |
+| root             |
+| user1            |
+| user2            |
++------------------+
+8 rows in set (0.00 sec)
+
+         1.      GRANT
+                    ->Give insert and select privilege to user 1 on customer table in the invoice database.
+mysql> GRANT INSERT,SELECT ON INVOICE.CUSTOMER TO user1@localhost;
+Query OK, 0 rows affected (0.00 sec)
+mysql> show grants for user1@localhost;
++---------------------------------------------------------------------+
+| Grants for user1@localhost                                          |
++---------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'user1'@'localhost'                           |
+| GRANT SELECT, INSERT ON `INVOICE`.`CUSTOMER` TO 'user1'@'localhost' |
++---------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+
+                    ->Give update and delete privilege to user 2 on all tables in the invoice database.
+mysql> GRANT UPDATE,DELETE ON INVOICE.* TO user2@localhost;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for user2@localhost;
++------------------------------------------------------------+
+| Grants for user2@localhost                                 |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'user2'@'localhost'                  |
+| GRANT UPDATE, DELETE ON `INVOICE`.* TO 'user2'@'localhost' |
++------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+        2.      REVOKE
+                   ->Remove delete privilege of user 2.
+mysql> REVOKE DELETE ON INVOICE.* FROM user2@localhost;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for user2@localhost;
++----------------------------------------------------+
+| Grants for user2@localhost                         |
++----------------------------------------------------+
+| GRANT USAGE ON *.* TO 'user2'@'localhost'          |
+| GRANT UPDATE ON `INVOICE`.* TO 'user2'@'localhost' |
++----------------------------------------------------+
+2 rows in set (0.00 sec)
