@@ -203,4 +203,4 @@ mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE 'A%' AND NAME LIKE '___%';
 +------------+
 2 rows in set (0.00 sec)
 
-
+//VERIFIED
