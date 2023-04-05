@@ -1,0 +1,43 @@
+EXPERIMENT NO: 1.6 ACCESSING DATABASES: (VIEWS)
+
+1. Create a view for customers who have purchased products.
+mysql> CREATE VIEW PURCHASED_CUSTOMERS_VW AS SELECT *FROM CUSTOMER WHERE ID IN (SELECT CUST_ID FROM INVOICE_MASTER);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT *FROM PURCHASED_CUSTOMERS_VW;
++----+-------------+---------------------------------+------------+------------+
+| ID | NAME        | ADDRESS                         | CITY       | PH_NO      |
++----+-------------+---------------------------------+------------+------------+
+|  1 | MISHAB      | KALANTHODE, KOZHIKODE, KERALA   | CALICUT    |       NULL |
+|  2 | RAM         | VALANCHERI, MALAPPURAM, KERALA  | MALAPPURAM | 8767988654 |
+|  3 | ABHISHEK    | MINNIE BAY, PORT BLAIR, ANDAMAN | PORT BLAIR | 9878654532 |
+|  4 | SUNIL KUMAR | GARACHARMA, PORT BLAIR, ANDAMAN | PORT BLAIR | 9933257865 |
+|  7 | SAVITA      | NEAR DARGAH, AJMER, RAJASTHAN   | AJMER      | 7890564532 |
++----+-------------+---------------------------------+------------+------------+
+5 rows in set (0.00 sec)
+
+2. Create a view for invoice products[cust_name, , inv_id, product_id, quantity]
+mysql> CREATE VIEW INVOICE_PRODUCTS_VW AS SELECT C.ID,C.NAME,IM.INV_ID,IM.INV_DATE,ITEM.PID,P.PNAME,ITEM.QUANTITY,P.PRICE AS RATE,ITEM.QUANTITY*P.PRICE AS AMOUNT FROM CUSTOMER AS C INNER JOIN INVOICE_MASTER AS IM ON IM.CUST_ID=C.ID INNER JOIN INVOICE_ITEM AS ITEM ON ITEM.INV_ID=IM.INV_ID INNE
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SELECT *FROM INVOICE_PRODUCTS_VW;
++----+-------------+--------+------------+------+------------------+----------+--------+--------+
+| ID | NAME        | INV_ID | INV_DATE   | PID  | PNAME            | QUANTITY | RATE   | AMOUNT |
++----+-------------+--------+------------+------+------------------+----------+--------+--------+
+|  2 | RAM         |      1 | 2023-01-15 |    1 | REXONA SOAP      |        5 |  45.00 | 225.00 |
+|  2 | RAM         |      1 | 2023-01-15 |    2 | HORLICKS         |        1 | 345.00 | 345.00 |
+|  2 | RAM         |      1 | 2023-01-15 |    7 | GOOD DAY BISCUIT |        4 |  55.00 | 220.00 |
+|  2 | RAM         |      3 | 2023-01-19 |    2 | HORLICKS         |        2 | 345.00 | 690.00 |
+|  2 | RAM         |      3 | 2023-01-19 |    3 | RED LABEL TEA    |        1 |  75.00 |  75.00 |
+|  2 | RAM         |      3 | 2023-01-19 |    7 | GOOD DAY BISCUIT |        3 |  55.00 | 165.00 |
+|  7 | SAVITA      |      4 | 2023-01-11 |    5 | PONDS CREAM      |        1 | 100.00 | 100.00 |
+|  7 | SAVITA      |      5 | 2023-03-15 |    2 | HORLICKS         |        1 | 345.00 | 345.00 |
+|  7 | SAVITA      |      5 | 2023-03-15 |    3 | RED LABEL TEA    |        1 |  75.00 |  75.00 |
+|  4 | SUNIL KUMAR |      6 | 2023-02-15 |    3 | RED LABEL TEA    |        2 |  75.00 | 150.00 |
+|  4 | SUNIL KUMAR |      6 | 2023-02-15 |    4 | SUNSILK SHAMPOO  |        2 |  80.00 | 160.00 |
+|  2 | RAM         |      7 | 2023-03-11 |    5 | PONDS CREAM      |        2 | 100.00 | 200.00 |
+|  2 | RAM         |      7 | 2023-03-11 |    7 | GOOD DAY BISCUIT |        2 |  55.00 | 110.00 |
++----+-------------+--------+------------+------+------------------+----------+--------+--------+
+13 rows in set (0.00 sec)
+
+
