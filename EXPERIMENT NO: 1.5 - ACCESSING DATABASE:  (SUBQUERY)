@@ -1,0 +1,78 @@
+1.5  ACCESSING DATABASE: (SUBQUERY)
+
+1.    List the customer names of invoice date 25th February 2023.
+mysql> SELECT NAME FROM CUSTOMER WHERE ID IN (SELECT CUST_ID FROM INVOICE_MASTER WHERE INV_DATE='2023-02-25');
++-------------+
+| NAME        |
++-------------+
+| RAM         |
+| SUNIL KUMAR |
++-------------+
+2 rows in set (0.00 sec)
+
+2.    List the product name and price of each invoice item.
+mysql> SELECT PNAME,PRICE FROM PRODUCT WHERE PID IN (SELECT DISTINCT PID FROM INVOICE_ITEM);
++------------------+--------+
+| PNAME            | PRICE  |
++------------------+--------+
+| REXONA SOAP      |  45.00 |
+| HORLICKS         | 345.00 |
+| RED LABEL TEA    |  75.00 |
+| SUNSILK SHAMPOO  |  80.00 |
+| PONDS CREAM      | 100.00 |
+| GOOD DAY BISCUIT |  55.00 |
++------------------+--------+
+6 rows in set (0.00 sec)
+
+3.    List the product names, only include their purchased quantity more than 2.
+mysql> SELECT PNAME,PRICE FROM PRODUCT WHERE PID IN (SELECT DISTINCT PID FROM INVOICE_ITEM WHERE QUANTITY>2);
++------------------+-------+
+| PNAME            | PRICE |
++------------------+-------+
+| REXONA SOAP      | 45.00 |
+| GOOD DAY BISCUIT | 55.00 |
++------------------+-------+
+2 rows in set (0.00 sec)
+
+4.    Find the product that has no sale.
+mysql> SELECT PNAME,PRICE FROM PRODUCT WHERE PID NOT IN (SELECT DISTINCT PID FROM INVOICE_ITEM);
++----------------------+--------+
+| PNAME                | PRICE  |
++----------------------+--------+
+| VASELINE MOISTURISER | 145.00 |
++----------------------+--------+
+1 row in set (0.00 sec)
+
+5.    List the customer names who purchased the items ‘HORLICKS’ and ‘GOOD DAY BISCUIT’.
+mysql> SELECT NAME FROM CUSTOMER WHERE ID IN (SELECT CUST_ID FROM INVOICE_MASTER WHERE INV_ID IN (SELECT DISTINCT INV_ID FROM INVOICE_ITEM WHERE PID IN(2,7)) );
++--------+
+| NAME   |
++--------+
+| RAM    |
+| SAVITA |
++--------+
+2 rows in set (0.00 sec)
+
+6.    Display the purchased product details of the customer ’RAM’.
+mysql> SELECT *FROM PRODUCT WHERE PID IN (SELECT DISTINCT PID FROM INVOICE_ITEM WHERE INV_ID IN (SELECT INV_ID FROM INVOICE_MASTER WHERE CUST_ID=(SELECT ID FROM CUSTOMER WHERE NAME='RAM')));
++-----+------------------+--------+
+| PID | PNAME            | PRICE  |
++-----+------------------+--------+
+|   1 | REXONA SOAP      |  45.00 |
+|   2 | HORLICKS         | 345.00 |
+|   3 | RED LABEL TEA    |  75.00 |
+|   5 | PONDS CREAM      | 100.00 |
+|   7 | GOOD DAY BISCUIT |  55.00 |
++-----+------------------+--------+
+5 rows in set (0.00 sec)
+
+7.    List the names of all customers who have purchased at least 2 products, make sure that no duplicate names in the result.
+mysql> SELECT NAME FROM CUSTOMER WHERE ID IN (SELECT CUST_ID FROM INVOICE_MASTER WHERE INV_ID IN (SELECT INV_ID FROM INVOICE_ITEM GROUP BY INV_ID HAVING COUNT(*)>1));
++-------------+
+| NAME        |
++-------------+
+| RAM         |
+| SUNIL KUMAR |
+| SAVITA      |
++-------------+
+3 rows in set (0.01 sec)
