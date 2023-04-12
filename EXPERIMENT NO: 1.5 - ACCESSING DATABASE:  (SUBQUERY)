@@ -76,3 +76,5 @@ mysql> SELECT NAME FROM CUSTOMER WHERE ID IN (SELECT CUST_ID FROM INVOICE_MASTER
 | SAVITA      |
 +-------------+
 3 rows in set (0.01 sec)
+
+//VERIFIED
