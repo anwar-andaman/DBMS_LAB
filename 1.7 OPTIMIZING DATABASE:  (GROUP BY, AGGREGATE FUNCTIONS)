@@ -1,0 +1,59 @@
+1.    List product name, price except soap on price order.
+mysql> SELECT PNAME,PRICE FROM PRODUCT WHERE PNAME<>'REXONA SOAP' ORDER BY PRICE;
++----------------------+--------+
+| PNAME                | PRICE  |
++----------------------+--------+
+| GOOD DAY BISCUIT     |  55.00 |
+| RED LABEL TEA        |  75.00 |
+| SUNSILK SHAMPOO      |  80.00 |
+| PONDS CREAM          | 100.00 |
+| VASELINE MOISTURISER | 145.00 |
+| HORLICKS             | 345.00 |
++----------------------+--------+
+
+2.    Find minimum, maximum and average price of products.
+mysql> SELECT MIN(PRICE),MAX(PRICE),AVG(PRICE) FROM PRODUCT;
++------------+------------+------------+
+| MIN(PRICE) | MAX(PRICE) | AVG(PRICE) |
++------------+------------+------------+
+|      45.00 |     345.00 | 120.714286 |
++------------+------------+------------+
+1 row in set (0.02 sec)
+
+3.     Find number of customers in each city.
+mysql> SELECT CITY,COUNT(*) FROM CUSTOMER GROUP BY CITY;
++------------+----------+
+| CITY       | COUNT(*) |
++------------+----------+
+| AJMER      |        1 |
+| BANGLURU   |        1 |
+| CALICUT    |        1 |
+| MALAPPURAM |        1 |
+| MUMBAI     |        1 |
+| PORT BLAIR |        2 |
++------------+----------+
+6 rows in set (0.00 sec)
+
+4.    Find number of customers in each city, only include city with more than 1 customers.
+mysql> SELECT CITY,COUNT(*) FROM CUSTOMER GROUP BY CITY HAVING COUNT(*)>1;
++------------+----------+
+| CITY       | COUNT(*) |
++------------+----------+
+| PORT BLAIR |        2 |
++------------+----------+
+1 row in set (0.00 sec)
+
+5.    Show data as displayed ‘who, where’ Eg: ‘customer1 lives in ekm’.
+mysql> SELECT CONCAT( NAME,' LIVES IN ',CITY) AS WHO_WHERE FROM CUSTOMER;
++---------------------------------+
+| WHO_WHERE                       |
++---------------------------------+
+| MISHAB LIVES IN CALICUT         |
+| RAM LIVES IN MALAPPURAM         |
+| ABHISHEK LIVES IN PORT BLAIR    |
+| SUNIL KUMAR LIVES IN PORT BLAIR |
+| BABITA LIVES IN MUMBAI          |
+| ASAD AKBAR LIVES IN BANGLURU    |
+| SAVITA LIVES IN AJMER           |
++---------------------------------+
+7 rows in set (0.00 sec)
