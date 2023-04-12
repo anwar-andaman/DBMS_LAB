@@ -57,3 +57,4 @@ mysql> SELECT CONCAT( NAME,' LIVES IN ',CITY) AS WHO_WHERE FROM CUSTOMER;
 | SAVITA LIVES IN AJMER           |
 +---------------------------------+
 7 rows in set (0.00 sec)
+//VERIFIED
