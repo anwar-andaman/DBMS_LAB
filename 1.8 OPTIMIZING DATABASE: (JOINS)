@@ -58,3 +58,5 @@ mysql> SELECT C.NAME,IM.INV_ID,IM.INV_DATE,P.PNAME,P.PRICE,I.QUANTITY,P.PRICE*I.
 | SAVITA      |      5 | 2023-03-15 | RED LABEL TEA    |  75.00 |        1 |  75.00 |
 +-------------+--------+------------+------------------+--------+----------+--------+
 17 rows in set (0.00 sec)
+
+//VERIFIED
