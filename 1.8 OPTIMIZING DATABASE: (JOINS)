@@ -1,0 +1,60 @@
+List the product name and quantity of invoice items.
+mysql> SELECT P.PNAME,SUM(I.QUANTITY) AS QUANTITY FROM PRODUCT AS P INNER JOIN INVOICE_ITEM AS I ON I.PID=P.PID GROUP BY P.PNAME;
++------------------+----------+
+| PNAME            | QUANTITY |
++------------------+----------+
+| GOOD DAY BISCUIT |        9 |
+| HORLICKS         |        4 |
+| PONDS CREAM      |        3 |
+| RED LABEL TEA    |        4 |
+| REXONA SOAP      |        5 |
+| SUNSILK SHAMPOO  |        2 |
++------------------+----------+
+6 rows in set (0.00 sec)
+
+2.    Display invoice details of the transaction dated ’2023-01-15’.
+mysql> SELECT IM.CUST_ID,IM.INV_DATE,I.PID,I.QUANTITY FROM INVOICE_MASTER AS IM INNER JOIN INVOICE_ITEM AS I ON I.INV_ID=IM.INV_ID WHERE IM.INV_DATE='2023-01-15';
++---------+------------+------+----------+
+| CUST_ID | INV_DATE   | PID  | QUANTITY |
++---------+------------+------+----------+
+|       2 | 2023-01-15 |    1 |        5 |
+|       2 | 2023-01-15 |    2 |        1 |
+|       2 | 2023-01-15 |    7 |        4 |
++---------+------------+------+----------+
+3 rows in set (0.00 sec)
+
+3.    Display the customer name, product name, invoice date of purchased item ‘HORLICKS’.
+mysql> SELECT C.NAME,P.PNAME,IM.INV_DATE FROM CUSTOMER AS C INNER JOIN INVOICE_MASTER AS IM ON IM.CUST_ID=C.ID INNER JOIN INVOICE_ITEM AS I ON I.INV_ID=IM.INV_ID INNER JOIN PRODUCT AS P ON I.PID=P.PID WHERE P.PNAME='HORLICKS';
++--------+----------+------------+
+| NAME   | PNAME    | INV_DATE   |
++--------+----------+------------+
+| RAM    | HORLICKS | 2023-01-15 |
+| RAM    | HORLICKS | 2023-01-19 |
+| SAVITA | HORLICKS | 2023-03-15 |
++--------+----------+------------+
+3 rows in set (0.00 sec)
+
+4.    Display all customer details and invoice details must include customer has not purchased items.
+mysql> SELECT C.NAME,IM.INV_ID,IM.INV_DATE,P.PNAME,P.PRICE,I.QUANTITY,P.PRICE*I.QUANTITY AS TOTAL FROM  INVOICE_MASTER AS IM  INNER JOIN INVOICE_ITEM AS I ON I.INV_ID=IM.INV_ID INNER JOIN PRODUCT AS P ON I.PID=P.PID RIGHT OUTER JOIN CUSTOMER AS C ON IM.CUST_ID=C.ID;
++-------------+--------+------------+------------------+--------+----------+--------+
+| NAME        | INV_ID | INV_DATE   | PNAME            | PRICE  | QUANTITY | TOTAL  |
++-------------+--------+------------+------------------+--------+----------+--------+
+| MISHAB      |   NULL | NULL       | NULL             |   NULL |     NULL |   NULL |
+| RAM         |      1 | 2023-01-15 | REXONA SOAP      |  45.00 |        5 | 225.00 |
+| RAM         |      1 | 2023-01-15 | HORLICKS         | 345.00 |        1 | 345.00 |
+| RAM         |      3 | 2023-01-19 | HORLICKS         | 345.00 |        2 | 690.00 |
+| RAM         |      3 | 2023-01-19 | RED LABEL TEA    |  75.00 |        1 |  75.00 |
+| RAM         |      3 | 2023-01-19 | GOOD DAY BISCUIT |  55.00 |        3 | 165.00 |
+| RAM         |      1 | 2023-01-15 | GOOD DAY BISCUIT |  55.00 |        4 | 220.00 |
+| RAM         |      7 | 2023-03-11 | PONDS CREAM      | 100.00 |        2 | 200.00 |
+| RAM         |      7 | 2023-03-11 | GOOD DAY BISCUIT |  55.00 |        2 | 110.00 |
+| ABHISHEK    |   NULL | NULL       | NULL             |   NULL |     NULL |   NULL |
+| SUNIL KUMAR |      6 | 2023-02-15 | RED LABEL TEA    |  75.00 |        2 | 150.00 |
+| SUNIL KUMAR |      6 | 2023-02-15 | SUNSILK SHAMPOO  |  80.00 |        2 | 160.00 |
+| BABITA      |   NULL | NULL       | NULL             |   NULL |     NULL |   NULL |
+| ASAD AKBAR  |   NULL | NULL       | NULL             |   NULL |     NULL |   NULL |
+| SAVITA      |      4 | 2023-01-11 | PONDS CREAM      | 100.00 |        1 | 100.00 |
+| SAVITA      |      5 | 2023-03-15 | HORLICKS         | 345.00 |        1 | 345.00 |
+| SAVITA      |      5 | 2023-03-15 | RED LABEL TEA    |  75.00 |        1 |  75.00 |
++-------------+--------+------------+------------------+--------+----------+--------+
+17 rows in set (0.00 sec)
