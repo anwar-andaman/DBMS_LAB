@@ -1,0 +1,45 @@
+1.      Display customer_id, city  who lives either in ‘CALICUT’ or in ‘PORT BLAIR’
+
+mysql> SELECT ID,CITY FROM CUSTOMER WHERE CITY IN ('CALICUT','PORT BLAIR');
++----+------------+
+| ID | CITY       |
++----+------------+
+|  1 | CALICUT    |
+|  3 | PORT BLAIR |
+|  4 | PORT BLAIR |
++----+------------+
+3 rows in set (0.00 sec)
+
+2.      Display product details with an updated price amount(new price= old price+5rs)
+mysql> SELECT PID,PNAME,PRICE AS OLD_PRICE,PRICE+5 AS NEW_PRICE FROM PRODUCT;
++-----+----------------------+-----------+-----------+
+| PID | PNAME                | OLD_PRICE | NEW_PRICE |
++-----+----------------------+-----------+-----------+
+|   1 | REXONA SOAP          |     45.00 |     50.00 |
+|   2 | HORLICKS             |    345.00 |    350.00 |
+|   3 | RED LABEL TEA        |     75.00 |     80.00 |
+|   4 | SUNSILK SHAMPOO      |     80.00 |     85.00 |
+|   5 | PONDS CREAM          |    100.00 |    105.00 |
+|   6 | VASELINE MOISTURISER |    145.00 |    150.00 |
+|   7 | GOOD DAY BISCUIT     |     55.00 |     60.00 |
++-----+----------------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+3.      Display customer details who doesn’t have phone number and lives in ‘Calicut’ city (use logical operators)
+mysql> SELECT ID,NAME,CITY FROM CUSTOMER WHERE PH_NO IS NULL AND CITY='CALICUT';
++----+--------+---------+
+| ID | NAME   | CITY    |
++----+--------+---------+
+|  1 | MISHAB | CALICUT |
++----+--------+---------+
+1 row in set (0.00 sec)
+
+
+4.      List the product names if it finds any records in the invoice items table has quantity =3 (use special operators)
+mysql> SELECT PID,PNAME FROM PRODUCT WHERE PID IN (SELECT PID FROM INVOICE_ITEM WHERE QUANTITY=3);
++-----+------------------+
+| PID | PNAME            |
++-----+------------------+
+|   7 | GOOD DAY BISCUIT |
++-----+------------------+
+1 row in set (0.00 sec)
