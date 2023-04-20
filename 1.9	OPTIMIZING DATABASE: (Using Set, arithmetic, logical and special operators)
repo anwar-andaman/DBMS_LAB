@@ -43,3 +43,5 @@ mysql> SELECT PID,PNAME FROM PRODUCT WHERE PID IN (SELECT PID FROM INVOICE_ITEM 
 |   7 | GOOD DAY BISCUIT |
 +-----+------------------+
 1 row in set (0.00 sec)
+
+//VERIFIED
