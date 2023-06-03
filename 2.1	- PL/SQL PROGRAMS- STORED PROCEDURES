@@ -1,0 +1,73 @@
+ 
+                
+1.      Create a procedure to display all tables in the invoice database.
+
+mysql> create procedure ShowTables()
+    -> begin
+    -> show tables;
+    -> end;;
+Query OK, 0 rows affected (0.57 sec)
+
+mysql> call ShowTables;;
++-------------------+
+| Tables_in_invoice |
++-------------------+
+| customer          |
+| employee          |
+| invoice_item      |
+| invoice_master    |
+| product           |
+| student           |
++-------------------+
+6 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+2.      Create a procedure to find greatest of 3 numbers.
+
+ mysql> create procedure FindGreatest(a int,b int,c int)
+    ->  begin
+    ->     if (a>b) and (a>c) then
+    ->     select a as Greatest;
+    ->     elseif (b>a) and (b>c) then
+    ->     select b as Greatest;
+    ->     else
+    ->     select c as Greatest;
+    ->     end if;
+    ->  end;;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> call FindGreatest(32,43,12);;
++----------+
+| Greatest |
++----------+
+|       43 |
++----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+3.      Create a procedure to display invoice details of a particular customer.
+
+mysql> create procedure Inv_Details(cust varchar(30))
+    ->           begin
+    ->         select c.name,im.*,p.pname,item.pid,item.quantity from Invoice_item as item inner join Invoice_master as im on im.inv_id=item.inv_id inner join product as p on        p.pid=item.pid inner join customer as c on c.id=im.cust_id where c.name=cust;
+    ->        end;;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql>     call Inv_Details('RAM');;
++------+--------+---------+------------+------------------+------+----------+
+| name | INV_ID | CUST_ID | INV_DATE   | pname            | pid  | quantity |
++------+--------+---------+------------+------------------+------+----------+
+| RAM  |      1 |       2 | 2023-01-15 | REXONA SOAP      |    1 |        5 |
+| RAM  |      1 |       2 | 2023-01-15 | HORLICKS         |    2 |        1 |
+| RAM  |      1 |       2 | 2023-01-15 | GOOD DAY BISCUIT |    7 |        4 |
+| RAM  |      3 |       2 | 2023-01-19 | HORLICKS         |    2 |        2 |
+| RAM  |      3 |       2 | 2023-01-19 | RED LABEL TEA    |    3 |        1 |
+| RAM  |      3 |       2 | 2023-01-19 | GOOD DAY BISCUIT |    7 |        3 |
+| RAM  |      7 |       2 | 2023-03-11 | PONDS CREAM      |    5 |        2 |
+| RAM  |      7 |       2 | 2023-03-11 | GOOD DAY BISCUIT |    7 |        2 |
++------+--------+---------+------------+------------------+------+----------+
+8 rows in set (0.06 sec)
+
+Query OK, 0 rows affected (0.13 sec)
