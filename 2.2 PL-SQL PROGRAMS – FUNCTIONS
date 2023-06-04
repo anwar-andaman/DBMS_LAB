@@ -1,0 +1,30 @@
+1.Create a function to calculate price_range(low, medium, high) of each product. If price<=70 indicate as low, upto 105 indicate as medium, and above as high.
+
+mysql> create function price_range(price int) returns varchar(20)
+    ->     deterministic
+    ->     begin
+    ->          declare amt varchar(20);
+    ->          if price<70 then
+    ->          set amt="low";
+    ->          elseif(price>=70 and price<105) then
+    ->          set amt="medium";
+    ->          elseif price>=105 then
+    ->          set amt="high";
+    ->          end if;
+    ->     return(amt);
+    ->     end;;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> select pid,pname,price,price_range(price) from product;;
++-----+----------------------+--------+--------------------+
+| pid | pname                | price  | price_range(price) |
++-----+----------------------+--------+--------------------+
+|   1 | REXONA SOAP          |  45.00 | low                |
+|   2 | HORLICKS             | 345.00 | high               |
+|   3 | RED LABEL TEA        |  75.00 | medium             |
+|   4 | SUNSILK SHAMPOO      |  80.00 | medium             |
+|   5 | PONDS CREAM          | 150.00 | high               |
+|   6 | VASELINE MOISTURISER | 145.00 | high               |
+|   7 | GOOD DAY BISCUIT     |  55.00 | low                |
++-----+----------------------+--------+--------------------+
+7 rows in set (0.03 sec)
