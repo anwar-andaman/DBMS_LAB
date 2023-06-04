@@ -1,0 +1,38 @@
+
+1.Write a PL/SQL program to create a name list of customers using CURSOR
+
+mysql> delimiter ;;
+mysql> create procedure run_cursor(inout nm varchar(500))
+    -> begin
+    -> declare finished integer default 0;
+    -> declare i int;
+    -> declare name1 varchar(50);
+    -> declare c cursor for select name from customer;
+    -> declare continue handler for not found set finished=1;
+    -> open c;
+    -> loop1: loop
+    ->          fetch c into name1;
+    ->          if finished=1 then
+    ->                  leave loop1;
+    ->          end if;
+    ->          set nm = concat(nm,", ",name1);
+    ->  end loop loop1;
+    -> close c;
+    -> end;;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql>
+mysql> set @nm="";
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call run_cursor(@nm);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @nm;
++------------------------------------------------------------------+
+| @nm                                                              |
++------------------------------------------------------------------+
+| , MISHAB, RAM, ABHISHEK, SUNIL KUMAR, BABITA, ASAD AKBAR, SAVITA |
++------------------------------------------------------------------+
+1 row in set (0.00 sec)
