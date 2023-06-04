@@ -1,0 +1,56 @@
+
+1. Create a trigger to handle updates to the customer table.
+
+mysql> create trigger inv_master_delete
+    ->     before delete
+    ->     on invoice_master
+    ->     for each row
+    ->     begin
+    ->     delete from invoice_item where inv_id=old.inv_id;
+    ->     end;;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> select *from invoice_item where inv_id=1;;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      1 |    1 |        5 |
+|      1 |    2 |        1 |
+|      1 |    7 |        4 |
++--------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> delete from invoice_master where inv_id=1;;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from invoice_item where inv_id=1;;
+Empty set (0.00 sec)
+
+2. Create a trigger to handle inserts to the product relation ( if price < 5 the set price to 10).
+
+mysql> create trigger prod_bef_ins
+    -> before insert on product
+    -> for each row
+    -> begin
+    -> if new.price<5 then
+    -> set new.price=10;
+    -> end if;
+    -> end;;
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> insert into product values(8,'Ponds Powder',4);;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from product;;
++-----+----------------------+--------+
+| PID | PNAME                | PRICE  |
++-----+----------------------+--------+
+|   1 | REXONA SOAP          |  45.00 |
+|   2 | HORLICKS             | 345.00 |
+|   3 | RED LABEL TEA        |  75.00 |
+|   4 | SUNSILK SHAMPOO      |  80.00 |
+|   5 | PONDS CREAM          | 150.00 |
+|   6 | VASELINE MOISTURISER | 145.00 |
+|   7 | GOOD DAY BISCUIT     |  55.00 |
+|   8 | Ponds Powder         |  10.00 |
++-----+----------------------+--------+
