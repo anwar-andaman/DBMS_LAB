@@ -36,3 +36,5 @@ mysql> select @nm;
 | , MISHAB, RAM, ABHISHEK, SUNIL KUMAR, BABITA, ASAD AKBAR, SAVITA |
 +------------------------------------------------------------------+
 1 row in set (0.00 sec)
+
+//VERIFIED
