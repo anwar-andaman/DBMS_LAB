@@ -71,3 +71,5 @@ mysql>     call Inv_Details('RAM');;
 8 rows in set (0.06 sec)
 
 Query OK, 0 rows affected (0.13 sec)
+
+//VERIFIED
