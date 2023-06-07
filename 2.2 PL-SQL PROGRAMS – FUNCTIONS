@@ -28,3 +28,4 @@ mysql> select pid,pname,price,price_range(price) from product;;
 |   7 | GOOD DAY BISCUIT     |  55.00 | low                |
 +-----+----------------------+--------+--------------------+
 7 rows in set (0.03 sec)
+//VERIFIED
