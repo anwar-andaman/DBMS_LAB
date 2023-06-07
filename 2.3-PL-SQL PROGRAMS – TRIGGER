@@ -54,3 +54,5 @@ mysql> select *from product;;
 |   7 | GOOD DAY BISCUIT     |  55.00 |
 |   8 | Ponds Powder         |  10.00 |
 +-----+----------------------+--------+
+
+//VERIFIED
