@@ -52,3 +52,5 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 > db.Customer.find().pretty()
 { "_id" : "001", "name" : "Anwar", "city" : "Port Blair" }
 { "_id" : "003", "name" : "Ram", "city" : "Kochin" }
+
+//VERIFIED
