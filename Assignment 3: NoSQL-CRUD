@@ -1,0 +1,54 @@
+
+
+1.      Write a MongoDB query to create an INVOICE database and collections (CUSTOMER, PRODUCT) and its corresponding documents.
+
+> use invoice
+switched to db invoice
+> create collection("Customer")
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:7
+> db.createCollection("Customer")
+{ "ok" : 1 }
+> db.createCollection("Product")
+{ "ok" : 1 }
+
+
+
+> db.Customer.insertMany([{_id:"001",name:"Anwar",city:"Port Blair"},
+... {_id:"002",name:"Gopal",city:"Kozhikode"},{_id:"003",name:"Ram",city:"Kochin"}])
+{ "acknowledged" : true, "insertedIds" : [ "001", "002", "003" ] }
+
+
+
+> db.Product.insertMany([{_id:"001",pname:"Horlicks",price:345.00},
+... {_id:"002",pname:"Sunsilk Shampoo",price:125.00},
+... {_id:"003",pname:"Red Lable Tea",price:85.00}])
+{ "acknowledged" : true, "insertedIds" : [ "001", "002", "003" ] }
+
+
+
+2.      Write a MongoDB query to find all documents from the collection CUSTOMER
+
+> db.Customer.find().pretty()
+{ "_id" : "001", "name" : "Anwar", "city" : "Port Blair" }
+{ "_id" : "002", "name" : "Gopal", "city" : "Kozhikode" }
+{ "_id" : "003", "name" : "Ram", "city" : "Kochin" }
+
+
+3.      Write a MongoDB query to update the city in the collection CUSTOMER.
+
+> db.Customer.update({'city':'Kozhikode'},{$set:{'city':'Calicut'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Customer.find().pretty()
+{ "_id" : "001", "name" : "Anwar", "city" : "Port Blair" }
+{ "_id" : "002", "name" : "Gopal", "city" : "Calicut" }
+{ "_id" : "003", "name" : "Ram", "city" : "Kochin" }
+
+
+4.      Write a MongoDB query to delete the first matched document whose city is “Calicut”.
+
+> db.Customer.deleteMany({'city':'Calicut'})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.Customer.find().pretty()
+{ "_id" : "001", "name" : "Anwar", "city" : "Port Blair" }
+{ "_id" : "003", "name" : "Ram", "city" : "Kochin" }
