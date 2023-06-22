@@ -1,0 +1,45 @@
+
+
+1.      Write a MongoDB query to create a user “CUSTOMER1” and grant the read role in the INVOICE database.
+
+> db.createUser({user:"Anwar",pwd:"123",roles:[{role:"read",db:"invoice"}]})
+Successfully added user: {
+	"user" : "Anwar",
+	"roles" : [
+		{
+			"role" : "read",
+			"db" : "invoice"
+		}
+	]
+}
+
+
+2.      Write a MongoDB query to create the backup for the INVOICE database.
+
+ksb@ksb-ThinkCentre-Edge72:~$ mongodump --db "invoice"
+2023-06-22T14:52:42.175+0530	writing invoice.Product to dump/invoice/Product.bson
+2023-06-22T14:52:42.176+0530	writing invoice.Customer to dump/invoice/Customer.bson
+2023-06-22T14:52:42.178+0530	done dumping invoice.Customer (4 documents)
+2023-06-22T14:52:42.223+0530	done dumping invoice.Product (3 documents)
+
+
+3.      Write a MongoDB query to restore a particular database or a collection.
+
+> use invoice
+switched to db invoice
+> db.dropDatabase()
+{ "dropped" : "invoice", "ok" : 1 }
+> 
+
+ksb@ksb-ThinkCentre-Edge72:~$ mongorestore --db invoice dump/invoice
+2023-06-22T15:00:08.923+0530	The --db and --collection flags are deprecated for this use-case; please use --nsInclude instead, i.e. with --nsInclude=${DATABASE}.${COLLECTION}
+2023-06-22T15:00:08.923+0530	building a list of collections to restore from dump/invoice dir
+2023-06-22T15:00:08.924+0530	reading metadata for invoice.Customer from dump/invoice/Customer.metadata.json
+2023-06-22T15:00:08.924+0530	reading metadata for invoice.Product from dump/invoice/Product.metadata.json
+2023-06-22T15:00:09.497+0530	restoring invoice.Customer from dump/invoice/Customer.bson
+2023-06-22T15:00:09.516+0530	finished restoring invoice.Customer (4 documents, 0 failures)
+2023-06-22T15:00:09.567+0530	restoring invoice.Product from dump/invoice/Product.bson
+2023-06-22T15:00:09.578+0530	finished restoring invoice.Product (3 documents, 0 failures)
+2023-06-22T15:00:09.578+0530	no indexes to restore for collection invoice.Customer
+2023-06-22T15:00:09.578+0530	no indexes to restore for collection invoice.Product
+2023-06-22T15:00:09.578+0530	7 document(s) restored successfully. 0 document(s) failed to restore.
