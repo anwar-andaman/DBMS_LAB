@@ -1,0 +1,19 @@
+
+
+1.      Write a MongoDB query to display the customer documents having city ‘Port Blair’,’Kozhikode’.
+
+> db.Customer.find({$or:[{'city':'Port Blair'},{'city':'Kozhikode'}]}).pretty()
+{ "_id" : "001", "name" : "Anwar", "city" : "Port Blair", "age" : "76" }
+{ "_id" : "002", "name" : "Gopal", "city" : "Port Blair", "age" : 60 }
+{ "_id" : "004", "name" : "Sunil", "city" : "Kozhikode", "age" : 20 }
+
+2.     Write a MongoDB query to display all customer documents who have age >50.
+> db.Customer.find({'age':{$gt:50}})
+{ "_id" : "001", "name" : "Anwar", "city" : "Port Blair", "age" : 70 }
+{ "_id" : "002", "name" : "Gopal", "city" : "Port Blair", "age" : 60 }
+
+3.      Write a MongoDB query to find customer documents who not live in ‘tvm’.
+> db.Customer.find({'city':{$ne:'Port Blair'}})
+{ "_id" : "003", "name" : "Ram", "city" : "Kochin", "age" : 30 }
+{ "_id" : "004", "name" : "Sunil", "city" : "Kozhikode", "age" : 20 }
+
