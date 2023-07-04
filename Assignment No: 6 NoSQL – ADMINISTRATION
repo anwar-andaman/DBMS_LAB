@@ -43,3 +43,5 @@ ksb@ksb-ThinkCentre-Edge72:~$ mongorestore --db invoice dump/invoice
 2023-06-22T15:00:09.578+0530	no indexes to restore for collection invoice.Customer
 2023-06-22T15:00:09.578+0530	no indexes to restore for collection invoice.Product
 2023-06-22T15:00:09.578+0530	7 document(s) restored successfully. 0 document(s) failed to restore.
+
+//VERIFIED
